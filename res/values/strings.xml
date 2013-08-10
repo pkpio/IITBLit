@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	<!-- Titles -->
+    <string name="app_name">IITB Lit</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Rebus</string>
+    <string name="title_section2">Pot puri</string>
+    <string name="title_section3">Lit section 3</string>
+    <string name="title_section4">Lit section 4</string>
+    
+    <!-- Strings -->
+    <string name="question_1">Question 1</string>
+    <string name="question_2">Question 2</string>
+    <string name="question_3">Question 3</string>
+    <string name="question_4">Question 4</string>
+    <string name="highscores_heading">Highscores</string>
+    <string name="answer_hint">Answer here..</string>
+    <string name="ques_img_descr">Question comes here..</string>
+    <string name="sample_scores">Bot 1 : 2500 \nBot 2 : 2200 \nBot 3 : 2000 \nBot 4 : 1900 \nBot 5 : 1600</string>
+
+    <!-- Pseudo buttons -->
+    <string name="submit">Submit</string>
+    <string name="refresh">Refresh</string>
+</resources>
