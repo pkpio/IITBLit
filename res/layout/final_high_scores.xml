@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey" >
+
+        <!-- Because ScrollView can have only one child -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/card"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/scoresHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/final_highscores_heading"
+                android:textColor="@color/ICSBlue"
+                android:textIsSelectable="false"
+                android:textSize="16sp" />
+
+            <!-- Line after highscore heading -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ICSBlue" >
+            </LinearLayout>
+
+            <!-- Highscores text layout -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:weightSum="1" >
+
+                <!-- High scores user names -->
+
+                <TextView
+                    android:id="@+id/score_names"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:gravity="right"
+                    android:lineSpacingExtra="12dp"
+                    android:singleLine="false"
+                    android:text="@string/default_uName"
+                    android:textSize="12sp" />
+
+                <!-- High scores values -->
+
+                <TextView
+                    android:id="@+id/score_values"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:lineSpacingExtra="12dp"
+                    android:singleLine="false"
+                    android:text="@string/default_score"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

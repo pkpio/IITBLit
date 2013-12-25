@@ -1,0 +1,265 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".MainActivity$DummySectionFragment" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="vertical" >
+
+            <!-- Card 1 -->
+
+            <LinearLayout
+                android:id="@+id/ques1Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/question1Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/question_1"
+                    android:textColor="@color/ICSBlue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ICSBlue" >
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/q1ImgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/ques_img_descr"
+                    android:src="@drawable/ques_unavailable" />
+
+                <EditText
+                    android:id="@+id/ans1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/answer_hint"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Card 2 -->
+
+            <LinearLayout
+                android:id="@+id/ques2Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/question2Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/question_2"
+                    android:textColor="@color/ICSBlue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ICSBlue" >
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/q2ImgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/ques_img_descr"
+                    android:src="@drawable/ques_unavailable" />
+
+                <EditText
+                    android:id="@+id/ans2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/answer_hint"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Card 3 -->
+
+            <LinearLayout
+                android:id="@+id/ques3Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/question3Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/question_3"
+                    android:textColor="@color/ICSBlue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ICSBlue" >
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/q3ImgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/ques_img_descr"
+                    android:src="@drawable/ques_unavailable" />
+
+                <EditText
+                    android:id="@+id/ans3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/answer_hint"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Card 4 -->
+
+            <LinearLayout
+                android:id="@+id/ques4Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/question4Heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/question_4"
+                    android:textColor="@color/ICSBlue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ICSBlue" >
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/q4ImgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/ques_img_descr"
+                    android:src="@drawable/ques_unavailable" />
+
+                <EditText
+                    android:id="@+id/ans4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/answer_hint"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Highscores card -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/scoresHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/highscores_heading"
+                    android:textColor="@color/ICSBlue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <!-- Line after highscore heading -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ICSBlue" >
+                </LinearLayout>
+
+                <!-- Highscores text layout -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:weightSum="1" >
+
+                    <!-- High scores user names -->
+
+                    <TextView
+                        android:id="@+id/score_names"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:lineSpacingExtra="12dp"
+                        android:singleLine="false"
+                        android:text="@string/default_uName"
+                        android:textSize="12sp" />
+
+                    <!-- High scores values -->
+
+                    <TextView
+                        android:id="@+id/score_values"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:lineSpacingExtra="12dp"
+                        android:singleLine="false"
+                        android:text="@string/default_score"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

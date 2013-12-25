@@ -1,7 +1,9 @@
+<resources>
 
-    <resources>
-        <color name="grey">#e5e5e5</color>
-        <color name="ICSBlue">#43b1d6</color>
-        <color name="white">#ffffff</color>
-        <color name="black">#000000</color>
-    </resources>
+    <color name="grey">#e5e5e5</color>
+    <color name="ICSBlue">#43b1d6</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="yellow">#55FFF200</color>
+
+</resources>

@@ -1,62 +1,58 @@
 package in.co.praveenkumar.iitblit;
 
-import java.io.File;
-import java.util.Locale;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import in.co.praveenkumar.iitblit.networking.SendCode;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class MainActivity extends FragmentActivity {
-	public static View[] sectionRootView = new View[4];
-	private final String DEBUG_TAG = "IITBLit.MainActivity";
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
+public class MainActivity extends Activity {
+	private SharedPreferences appSharedPrefs;
+	private Editor prefsEditor;
+	private final String VERIFIED = "isVerified";
+	private EditText ldapView;
+	private EditText codeView;
+	private Button sendBtn;
+	private Button verifyBtn;
+	private final int ACTIVITY_QUIZ = 0;
+	private final int ACTIVITY_ABOUT = 1;
+	private final int ACTIVITY_HELP = 2;
+	private final String GUEST = "guest";
+	public String ldap = "";
+	private Database db;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.landing_page);
 
-		// Start a background thread that downloads files in the bg
-		// The newly obtained will be pushed to UI thread after each image
-		// download
-		quesDownloader qDown = new quesDownloader();
-		qDown.downloadFiles();
+		// Android in-built preferences for landing page only.
+		appSharedPrefs = this.getSharedPreferences("IITBLit_landing_page",
+				Activity.MODE_PRIVATE);
 
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getSupportFragmentManager());
+		// Check if user is already verified. If so, open quiz page
+		if (appSharedPrefs.getBoolean(VERIFIED, false))
+			openActivity(ACTIVITY_QUIZ);
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
+		// Set views
+		ldapView = (EditText) findViewById(R.id.ldap_id);
+		codeView = (EditText) findViewById(R.id.verification_code);
+		sendBtn = (Button) findViewById(R.id.send_code_btn);
+		verifyBtn = (Button) findViewById(R.id.verify_code_btn);
+
+		// For LDAP saving.
+		db = new Database(getApplicationContext());
+
+		sendBtn.setOnClickListener(sendCodeBtnListener);
+		verifyBtn.setOnClickListener(verifyCodeBtnListener);
 
 	}
 
@@ -67,169 +63,126 @@ public class MainActivity extends FragmentActivity {
 		return true;
 	}
 
-	/**
-	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
-	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-		public SectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_about:
+			openActivity(ACTIVITY_ABOUT);
+			break;
+		case R.id.menu_help:
+			openActivity(ACTIVITY_HELP);
+			break;
 		}
-
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// Show 3 total pages.
-			return 4;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
-			switch (position) {
-			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
-			case 1:
-				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
-			case 3:
-				return getString(R.string.title_section4).toUpperCase(l);
-			}
-			return null;
-		}
+		return true;
 	}
 
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		private final String DEBUG_TAG = "IITBLit.DummySectionFragment";
-		public static final String ARG_SECTION_NUMBER = "section_number";
+	// Onclick listeners
+	private OnClickListener sendCodeBtnListener = new OnClickListener() {
 
-		public DummySectionFragment() {
+		public void onClick(View v) {
+			String ldapId = ldapView.getText().toString();
+			if (ldapId.contentEquals(GUEST)) {
+				db.setLDAP(GUEST);
+				openActivity(ACTIVITY_QUIZ);
+			} else if (!ldapId.contentEquals("")) {
+				// Set ldapId from field to global ldap variable
+				ldap = ldapId;
+
+				// Change button content on send success
+				sendBtn.setText("Sending..");
+				sendBtn.setClickable(false);
+
+				// Send code
+				sendCodeToServer sc = new sendCodeToServer();
+				sc.execute();
+			}
 		}
+	};
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			int sectionNum = getArguments().getInt(ARG_SECTION_NUMBER);
-			View rootView = inflater.inflate(R.layout.data_display, container,
-					false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.question1Heading);
-			switch (sectionNum) {
-			case 1:
-				Log.d(DEBUG_TAG, "Creating scetion 1");
-				dummyTextView.setText("Question 1 Section 1"
-						+ Integer.toString(getArguments().getInt(
-								ARG_SECTION_NUMBER)));
-				sectionRootView[0] = rootView;
-				UIupdater.questionsUIUpdate();
-				break;
-			case 2:
-				Log.d(DEBUG_TAG, "Creating scetion 1");
-				dummyTextView.setText("Question 1 Section 2"
-						+ Integer.toString(getArguments().getInt(
-								ARG_SECTION_NUMBER)));
-				sectionRootView[1] = rootView;
-				UIupdater.questionsUIUpdate();
-				break;
-			case 3:
-				Log.d(DEBUG_TAG, "Creating scetion 1");
-				dummyTextView.setText("Question 1 Section 3"
-						+ Integer.toString(getArguments().getInt(
-								ARG_SECTION_NUMBER)));
-				sectionRootView[2] = rootView;
-				UIupdater.questionsUIUpdate();
-				break;
-			case 4:
-				Log.d(DEBUG_TAG, "Creating scetion 1");
-				dummyTextView.setText("Question 1 Section 4"
-						+ Integer.toString(getArguments().getInt(
-								ARG_SECTION_NUMBER)));
-				sectionRootView[3] = rootView;
-				UIupdater.questionsUIUpdate();
-				break;
+	private OnClickListener verifyCodeBtnListener = new OnClickListener() {
+
+		public void onClick(View v) {
+			String ldapId = ldapView.getText().toString();
+			String codeGvn = codeView.getText().toString();
+			if (ldapId.contentEquals(GUEST))
+				openActivity(ACTIVITY_QUIZ);
+			else if (!ldapId.contentEquals("")) {
+				// Set ldapId from field to global ldap variable
+				ldap = ldapId;
+				String actualCode = appSharedPrefs.getString(ldapId, "");
+
+				// Verify codes
+				if (!actualCode.contentEquals("")
+						&& codeGvn.contentEquals(actualCode)) {
+					// Update this in preferences
+					prefsEditor = appSharedPrefs.edit();
+					prefsEditor.putBoolean(VERIFIED, true);
+					prefsEditor.apply();
+
+					// Store ldap id in app db.
+					db.setLDAP(ldapId);
+
+					// Open quiz
+					openActivity(ACTIVITY_QUIZ);
+				} else
+					verifyBtn.setText("Wrong ! Try again !");
 
 			}
-
-			return rootView;
 		}
-	}
+	};
 
-	public static class UIupdater {
-		private final static String DEBUG_TAG = "IITBLit.UIUpdater";
-
-		public UIupdater() {
-			// Constructor does nothing
-		}
-
-		public static void questionsUIUpdate() {
-			for (int catNum = 0; catNum < 4; catNum++) {
-				for (int quesNum = 0; quesNum < 4; quesNum++) {
-					File imgFile = new File(
-							Environment.getExternalStorageDirectory(),
-							"/IITBLit/" + "Cat" + catNum + "Ques" + quesNum
-									+ ".jpg");
-					System.out.println("File checking" + catNum + quesNum);
-					if (imgFile.exists() && sectionRootView[catNum] != null) {
-						System.out.println("File exists");
-						Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
-								.getAbsolutePath());
-						Log.d(DEBUG_TAG, "Updating UI for Cat : " + catNum
-								+ " Ques : " + quesNum);
-						switch (quesNum) {
-						case 0:
-							ImageView ques1View = (ImageView) sectionRootView[catNum]
-									.findViewById(R.id.q1ImgView);
-							ques1View.setImageBitmap(myBitmap);
-							break;
-						case 1:
-							ImageView ques2View = (ImageView) sectionRootView[catNum]
-									.findViewById(R.id.q2ImgView);
-							ques2View.setImageBitmap(myBitmap);
-							break;
-						case 2:
-							ImageView ques3View = (ImageView) sectionRootView[catNum]
-									.findViewById(R.id.q3ImgView);
-							ques3View.setImageBitmap(myBitmap);
-							break;
-						case 3:
-							ImageView ques4View = (ImageView) sectionRootView[catNum]
-									.findViewById(R.id.q4ImgView);
-							ques4View.setImageBitmap(myBitmap);
-							break;
-
-						}
-					}
-				}
-			} // End of loop code
-		}
-
-		public static void scoresUIUpdate(String scoresString) {
-			
+	private void openActivity(int item) {
+		switch (item) {
+		case ACTIVITY_QUIZ:
+			Intent j = new Intent(this, Quizzing.class);
+			startActivityForResult(j, 11);
+			break;
+		case ACTIVITY_ABOUT:
+			Intent k = new Intent(this, MenuClickHandler.class);
+			k.putExtra("menu_item", ACTIVITY_ABOUT);
+			startActivityForResult(k, 11);
+			break;
+		case ACTIVITY_HELP:
+			Intent l = new Intent(this, MenuClickHandler.class);
+			l.putExtra("menu_item", ACTIVITY_HELP);
+			startActivityForResult(l, 11);
+			break;
+		default:
+			break;
 		}
 
 	}
 
-	// End of UI updation class
+	private class sendCodeToServer extends AsyncTask<String, Integer, Boolean> {
+		Boolean sendStatus = false;
+		private String code = "";
+
+		@Override
+		protected Boolean doInBackground(String... quesParam) {
+			CodeGenerator cg = new CodeGenerator();
+			code = cg.getCode();
+
+			SendCode sc = new SendCode();
+			sendStatus = sc.sendCodeToServer(ldap, code);
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			super.onPostExecute(result);
+			if (sendStatus) {
+				// If code sent successfully save code in db
+				// Use ldap as code name while saving. Unique code per id
+				prefsEditor = appSharedPrefs.edit();
+				prefsEditor.putString(ldap, code);
+				prefsEditor.commit();
+
+				sendBtn.setText("Sent ! Resend ?");
+			} else
+				sendBtn.setText("Failed ! Resend ?");
+
+			sendBtn.setClickable(true);
+		}
+	}
 
 }
