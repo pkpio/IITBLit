@@ -46,7 +46,6 @@ public class SumbitAnswers {
 
 		@Override
 		protected Boolean doInBackground(Integer... quesParam) {
-			publishProgress(0);
 			Log.d(DEBUG_TAG, "Async thread started");
 			// Create a new HttpClient and Post Header
 			HttpClient httpclient = new DefaultHttpClient();
@@ -88,31 +87,22 @@ public class SumbitAnswers {
 				evalBoolResp(urlResp);
 
 				status = true;
-				publishProgress(1);
 
-				publishProgress(2);
 				// Do a scores update now. User may be on top scores list.
 				ScoresDownloader sd = new ScoresDownloader();
 				sd.downloadScores();
-				publishProgress(4);
 
 			} catch (ClientProtocolException e) {
 				status = false;
 			} catch (IOException e) {
 				status = false;
 			}
-			publishProgress(4);
 			return true;
-		}
-
-		protected void onProgressUpdate(Integer... progress) {
-			UIupdater.publishProgressToUI(0, progress[0], status);
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
 			super.onPostExecute(result);
-			publishProgress(4);
 			if (status) {
 				UIupdater.scoresUIUpdate();
 				UIupdater.ansUIUpdate(getBoolResp());
