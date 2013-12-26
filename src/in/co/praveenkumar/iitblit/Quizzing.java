@@ -47,6 +47,7 @@ public class Quizzing extends FragmentActivity {
 	public final static String COLOR_GREEN = "#12a962";
 	public final static String COLOR_YELLOW = "#55FFF200";
 	public final static String COLOR_BLUE = "#43b1d6";
+	private static Button submitBtn;
 
 	// For answer color evaluation on submit
 	private static Boolean[][] response = new Boolean[4][4];
@@ -108,8 +109,8 @@ public class Quizzing extends FragmentActivity {
 		Button refreshButton = (Button) findViewById(R.id.refresh_button);
 		refreshButton.setOnClickListener(refreshButtonListener);
 
-		Button submitButton = (Button) findViewById(R.id.submit_button);
-		submitButton.setOnClickListener(submitButtonListener);
+		submitBtn = (Button) findViewById(R.id.submit_button);
+		submitBtn.setOnClickListener(submitButtonListener);
 
 	}
 
@@ -227,6 +228,7 @@ public class Quizzing extends FragmentActivity {
 				UIupdater.ansUIUpdate(response);
 				setUpAnswerFields();
 				UIupdater.quesVisibUpdate();
+				UIupdater.setSubmitBtn(2);
 				break;
 			case 2:
 				Log.d(DEBUG_TAG, "Creating section 2");
@@ -236,6 +238,7 @@ public class Quizzing extends FragmentActivity {
 				UIupdater.ansUIUpdate(response);
 				setUpAnswerFields();
 				UIupdater.quesVisibUpdate();
+				UIupdater.setSubmitBtn(2);
 				break;
 			case 3:
 				Log.d(DEBUG_TAG, "Creating section 3");
@@ -245,6 +248,7 @@ public class Quizzing extends FragmentActivity {
 				UIupdater.ansUIUpdate(response);
 				setUpAnswerFields();
 				UIupdater.quesVisibUpdate();
+				UIupdater.setSubmitBtn(2);
 				break;
 			case 4:
 				Log.d(DEBUG_TAG, "Creating section 4");
@@ -254,12 +258,14 @@ public class Quizzing extends FragmentActivity {
 				UIupdater.ansUIUpdate(response);
 				setUpAnswerFields();
 				UIupdater.quesVisibUpdate();
+				UIupdater.setSubmitBtn(2);
 				break;
 			case 5:
 				Log.d(DEBUG_TAG, "Creating section 5");
 				rootView = fHighScoresView;
 				sectionRootView[4] = rootView;
 				UIupdater.scoresUIUpdate();
+				UIupdater.setSubmitBtn(2);
 				break;
 			}
 			return rootView;
@@ -531,6 +537,29 @@ public class Quizzing extends FragmentActivity {
 
 			}// End of null ptr checking
 		}// End of quesVisibUpdate
+
+		public static void setSubmitBtn(int val) {
+			// 0 = Success; 1 = fail; 2 = reset
+			switch (val) {
+			case 0:
+				submitBtn.setText("Success ! Resubmit ?");
+				submitBtn.setClickable(true);
+				break;
+
+			case 1:
+				submitBtn.setText("Failed ! Retry ?");
+				submitBtn.setClickable(true);
+				break;
+			case 2:
+				if (!submitBtn.getText().toString()
+						.contentEquals("Submitting..")) {
+					submitBtn.setText("Submit");
+					submitBtn.setClickable(true);
+				}
+				break;
+			}
+
+		}
 	} // End of UI updation class
 
 	// This class does all the network activity
@@ -652,6 +681,8 @@ public class Quizzing extends FragmentActivity {
 
 	private OnClickListener submitButtonListener = new OnClickListener() {
 		public void onClick(View v) {
+			submitBtn.setText("Submitting..");
+			submitBtn.setClickable(false);
 			String[][] answers = new String[4][4];
 			for (int cat = 0; cat < 4; cat++) {
 				for (int q = 0; q < 4; q++) {
@@ -660,7 +691,7 @@ public class Quizzing extends FragmentActivity {
 			}
 
 			// Submit to a webpage now
-			SumbitAnswers sa = new SumbitAnswers(answers,db.getLDAP());
+			SumbitAnswers sa = new SumbitAnswers(answers, db.getLDAP());
 			sa.sync();
 		}
 	};

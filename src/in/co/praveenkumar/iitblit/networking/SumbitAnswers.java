@@ -106,6 +106,9 @@ public class SumbitAnswers {
 			if (status) {
 				UIupdater.scoresUIUpdate();
 				UIupdater.ansUIUpdate(getBoolResp());
+				UIupdater.setSubmitBtn(0);
+			} else {
+				UIupdater.setSubmitBtn(1);
 			}
 		}
 	}

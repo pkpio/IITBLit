@@ -8,29 +8,33 @@
         android:id="@+id/progress_msg_layout"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:background="@color/yellow" >
+        android:background="@color/yellow"
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/progress_msg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="0.9"
-            android:gravity="center_vertical"
-            android:text="@string/default_progress_msg"
-            android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/yellow"
+            android:orientation="horizontal" >
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleSmallTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:paddingBottom="1dp"
-            android:paddingRight="5dp"
-            android:paddingTop="1dp" />
+            <TextView
+                android:id="@+id/progress_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/default_progress_msg"
+                android:textSize="12sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleSmallTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0.1dp"
+                android:layout_marginRight="4dp" />
+        </LinearLayout>
     </LinearLayout>
     <!-- Swiping content viewer -->
 
