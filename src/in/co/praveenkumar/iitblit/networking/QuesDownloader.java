@@ -1,5 +1,7 @@
 package in.co.praveenkumar.iitblit.networking;
 
+import in.co.praveenkumar.iitblit.Quizzing.UIupdater;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,9 +47,9 @@ public class QuesDownloader {
 		Boolean downStatus = false;
 		// 0 = failed (default), 1 = success
 		Log.d(DEBUG_TAG, "File download requested");
-
 		for (int catNum = 0; catNum < 4; catNum++) {
 			for (int quesNum = 0; quesNum < 4; quesNum++) {
+				UIupdater.updateQsDownCountUI(catNum * 4 + quesNum);
 
 				try {
 					Log.d(DEBUG_TAG, "Download requested for Cat : " + catNum
@@ -136,8 +138,8 @@ public class QuesDownloader {
 	public Boolean[][] getAvailQStatus() {
 		return qStatus;
 	}
-	
-	public String getAvailQStatusStrng(){
+
+	public String getAvailQStatusStrng() {
 		return qStatusStrng;
 	}
 }

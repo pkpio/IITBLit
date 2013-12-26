@@ -47,6 +47,8 @@ public class Quizzing extends FragmentActivity {
 	public final static String COLOR_GREEN = "#12a962";
 	public final static String COLOR_YELLOW = "#55FFF200";
 	public final static String COLOR_BLUE = "#43b1d6";
+	public final static int SCORE_SUBMIT = 0;
+	public final static int QUES_NUM_UPDATE = 1;
 
 	// For answer color evaluation on submit
 	private static Boolean[][] response = new Boolean[4][4];
@@ -113,7 +115,7 @@ public class Quizzing extends FragmentActivity {
 
 	}
 
-	// To avoid going back to landing page. Open Launcher. App in bg.
+	// To avoid going back to landing page. Open Launcher. App to bg.
 	@Override
 	public void onBackPressed() {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -531,6 +533,39 @@ public class Quizzing extends FragmentActivity {
 
 			}// End of null ptr checking
 		}// End of quesVisibUpdate
+
+		public static void publishProgressToUI(int SelProgMess, int subVal,
+				Boolean status) {
+			switch (SelProgMess) {
+			case SCORE_SUBMIT:
+				switch (subVal) {
+				case 0:
+					progMsgLL.setVisibility(LinearLayout.VISIBLE);
+					progMsgTV.setText("Submitting answers...");
+					progMsgLL
+							.setBackgroundColor(Color.parseColor(COLOR_YELLOW));
+					break;
+				case 1:
+					progMsgTV.setText("Updating scores...");
+					progMsgLL.setBackgroundColor(Color.parseColor(COLOR_GREEN));
+					break;
+				case 2:
+					if (status) {
+						progMsgTV.setText("Updated !");
+						progMsgLL.setBackgroundColor(Color
+								.parseColor(COLOR_GREEN));
+						UIupdater.this();
+					}
+				}
+
+				break;
+
+			case QUES_NUM_UPDATE:
+				progMsgTV.setText("Fetching question #" + subVal + "...");
+				break;
+			}
+
+		}
 	} // End of UI updation class
 
 	// This class does all the network activity
@@ -660,7 +695,7 @@ public class Quizzing extends FragmentActivity {
 			}
 
 			// Submit to a webpage now
-			SumbitAnswers sa = new SumbitAnswers(answers,db.getLDAP());
+			SumbitAnswers sa = new SumbitAnswers(answers, db.getLDAP());
 			sa.sync();
 		}
 	};
