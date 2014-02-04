@@ -1,5 +1,7 @@
 package in.co.praveenkumar.iitblit.networking;
 
+import in.co.praveenkumar.iitblit.MainActivity;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +17,7 @@ import android.util.Log;
 
 public class ScoresDownloader {
 	private final String DEBUG_TAG = "ScoresDownloader";
-	private String scoresURL = "http://www.iitblit.praveenkumar.co.in/scores/";
+	private String scoresURL = MainActivity.baseURL + "/scores/";
 
 	public ScoresDownloader() {
 

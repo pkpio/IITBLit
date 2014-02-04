@@ -14,6 +14,7 @@ public final class R {
         public static final int ICSBlue=0x7f040001;
         public static final int black=0x7f040003;
         public static final int grey=0x7f040000;
+        public static final int transparent=0x7f040005;
         public static final int white=0x7f040002;
         public static final int yellow=0x7f040004;
     }
@@ -78,9 +79,10 @@ public final class R {
     public static final class layout {
         public static final int about=0x7f030000;
         public static final int final_high_scores=0x7f030001;
-        public static final int landing_page=0x7f030002;
-        public static final int quiz_main=0x7f030003;
-        public static final int quiz_section=0x7f030004;
+        public static final int help=0x7f030002;
+        public static final int landing_page=0x7f030003;
+        public static final int quiz_main=0x7f030004;
+        public static final int quiz_section=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;

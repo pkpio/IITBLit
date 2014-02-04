@@ -17,7 +17,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 public class SendCode {
-	private final String codeURL = "http://iitblit.praveenkumar.co.in/email/";
+	//private final String codeURL = MainActivity.baseURL + "/email/";
+	private final String codeURL = "http://home.iitb.ac.in/~praveendath92/IITBLit/email/";
 	private final String SUCCESS_CONTENT = "success";
 
 	public Boolean sendCodeToServer(String ldap, String code) {
@@ -50,6 +51,7 @@ public class SendCode {
 				total.append(line);
 			}
 			urlResp = total.toString();
+			System.out.println(urlResp);
 
 			if (urlResp.contentEquals(SUCCESS_CONTENT))
 				status = true;

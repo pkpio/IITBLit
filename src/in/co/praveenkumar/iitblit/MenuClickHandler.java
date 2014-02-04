@@ -18,7 +18,7 @@ public class MenuClickHandler extends Activity {
 		if (menuItemSel == ABOUT)
 			setContentView(R.layout.about);
 		else if (menuItemSel == HELP)
-			setContentView(R.layout.about);
+			setContentView(R.layout.help);
 
 	}
 

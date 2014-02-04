@@ -1,5 +1,7 @@
 package in.co.praveenkumar.iitblit.networking;
 
+import in.co.praveenkumar.iitblit.MainActivity;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,8 +23,8 @@ import android.util.Log;
 
 public class QuesDownloader {
 	private final String DEBUG_TAG = "quesDownloader";
-	private String quesBaseURL = "http://www.iitblit.praveenkumar.co.in/questions/";
-	private String quesStatusURL = "http://www.iitblit.praveenkumar.co.in/questions/getQsStatus";
+	private String quesBaseURL = MainActivity.baseURL + "/questions/";
+	private String quesStatusURL = MainActivity.baseURL + "/questions/getQsStatus";
 	private String[][] quesURL = new String[4][4]; // Array with URLs to
 													// questions
 	private Boolean[][] qStatus = new Boolean[4][4];

@@ -309,16 +309,16 @@ public class Quizzing extends FragmentActivity {
 
 					// Save answers in local db
 					if (!ans1View.getText().toString().contentEquals(""))
-						db.saveAnswer("c" + catNum + "q1", ans1View.getText()
+						db.saveAnswer("c" + catNum + "q0", ans1View.getText()
 								.toString());
 					if (!ans2View.getText().toString().contentEquals(""))
-						db.saveAnswer("c" + catNum + "q2", ans2View.getText()
+						db.saveAnswer("c" + catNum + "q1", ans2View.getText()
 								.toString());
 					if (!ans3View.getText().toString().contentEquals(""))
-						db.saveAnswer("c" + catNum + "q3", ans3View.getText()
+						db.saveAnswer("c" + catNum + "q2", ans3View.getText()
 								.toString());
 					if (!ans4View.getText().toString().contentEquals(""))
-						db.saveAnswer("c" + catNum + "q4", ans4View.getText()
+						db.saveAnswer("c" + catNum + "q3", ans4View.getText()
 								.toString());
 
 				}
@@ -715,14 +715,14 @@ public class Quizzing extends FragmentActivity {
 						.findViewById(R.id.ans4);
 
 				// Set values to values from db
+				if (!db.getAnswer("c" + catNum + "q0").contentEquals(""))
+					ans1View.setText(db.getAnswer("c" + catNum + "q0"));
 				if (!db.getAnswer("c" + catNum + "q1").contentEquals(""))
-					ans1View.setText(db.getAnswer("c" + catNum + "q1"));
+					ans2View.setText(db.getAnswer("c" + catNum + "q1"));
 				if (!db.getAnswer("c" + catNum + "q2").contentEquals(""))
-					ans2View.setText(db.getAnswer("c" + catNum + "q2"));
+					ans3View.setText(db.getAnswer("c" + catNum + "q2"));
 				if (!db.getAnswer("c" + catNum + "q3").contentEquals(""))
-					ans3View.setText(db.getAnswer("c" + catNum + "q3"));
-				if (!db.getAnswer("c" + catNum + "q4").contentEquals(""))
-					ans4View.setText(db.getAnswer("c" + catNum + "q4"));
+					ans4View.setText(db.getAnswer("c" + catNum + "q3"));
 
 				// Setting up on change listeners
 				ans1View.addTextChangedListener(new addListenerOnTextChange(

@@ -1,5 +1,6 @@
 package in.co.praveenkumar.iitblit.networking;
 
+import in.co.praveenkumar.iitblit.MainActivity;
 import in.co.praveenkumar.iitblit.Quizzing.UIupdater;
 
 import java.io.BufferedReader;
@@ -23,7 +24,7 @@ import android.util.Log;
 
 public class SumbitAnswers {
 	private String[][] answers = new String[4][4];
-	private String ansURL = "http://www.iitblit.praveenkumar.co.in/evaluate/";
+	private String ansURL = MainActivity.baseURL + "/evaluate/";
 	private final String DEBUG_TAG = "Ans Submit";
 	private Boolean status = false;
 	private String urlResp = "";
@@ -57,10 +58,10 @@ public class SumbitAnswers {
 
 				// Put all answers in NameValuePairs for POSTing
 				ansForUrl.add(new BasicNameValuePair("ldap", ldap));
-				for (int c = 0; c < 4; c++) {
-					for (int q = 0; q < 4; q++) {
+				for (int c = 1; c < 5; c++) {
+					for (int q = 1; q < 5; q++) {
 						ansForUrl.add(new BasicNameValuePair("c" + c + "q" + q,
-								answers[c][q]));
+								answers[c-1][q-1]));
 					}
 				}
 

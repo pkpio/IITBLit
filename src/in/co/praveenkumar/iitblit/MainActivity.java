@@ -1,20 +1,28 @@
 package in.co.praveenkumar.iitblit;
 
 import in.co.praveenkumar.iitblit.networking.SendCode;
+
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	private final String DEBUG_TAG = "Main Activity";
+	public static final String baseURL = "http://iitblit.praveenkumar.co.in";
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
 	private final String VERIFIED = "isVerified";
@@ -53,6 +61,18 @@ public class MainActivity extends Activity {
 
 		sendBtn.setOnClickListener(sendCodeBtnListener);
 		verifyBtn.setOnClickListener(verifyCodeBtnListener);
+
+		// Create a directory for the app content
+		File file = new File(Environment.getExternalStorageDirectory(),
+				"/IITBLit/");
+		if (!file.exists()) {
+			if (!file.mkdirs()) {
+				Log.d(DEBUG_TAG, "Problem creating course folder");
+				Toast.makeText(getBaseContext(),
+						"failed to create folder " + file, Toast.LENGTH_SHORT)
+						.show();
+			}
+		}
 
 	}
 

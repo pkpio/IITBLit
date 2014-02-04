@@ -18,140 +18,101 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="vertical"
-            android:paddingBottom="50dp" >
+            android:background="@drawable/card"
+            android:orientation="vertical" >
 
             <!-- Card 1 -->
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/landing_code_heading"
+                android:textColor="@color/ICSBlue"
+                android:textIsSelectable="false"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/card"
-                android:orientation="vertical" >
+                android:layout_height="1dp"
+                android:background="@color/ICSBlue" >
+            </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/landing_code_heading"
-                    android:textColor="@color/ICSBlue"
-                    android:textIsSelectable="false"
+            <EditText
+                android:id="@+id/ldap_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="40dp"
+                android:hint="@string/landing_ldap_hint"
+                android:lines="1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="40dp"
+                android:hint="@string/landing_verify_code_hint"
+                android:lines="1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/grey" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="0.1dp"
+                android:layout_marginLeft="0.1dp"
+                android:layout_marginRight="0.1dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <Button
+                    android:id="@+id/send_code_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.499"
+                    android:background="@drawable/textview_button_bg"
+                    android:gravity="center"
+                    android:text="@string/landing_send_btn"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ICSBlue" >
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/ldap_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="40dp"
-                    android:hint="@string/landing_ldap_hint"
-                    android:lines="1"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/verification_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="40dp"
-                    android:hint="@string/landing_verify_code_hint"
-                    android:lines="1"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0.25dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.002"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/grey" >
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/verify_code_btn"
+                    android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_marginBottom="0.1dp"
-                    android:layout_marginLeft="0.1dp"
-                    android:layout_marginRight="0.1dp"
-                    android:layout_marginTop="0dp"
-                    android:orientation="horizontal"
-                    android:weightSum="1" >
-
-                    <Button
-                        android:id="@+id/send_code_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="0.499"
-                        android:background="@drawable/textview_button_bg"
-                        android:gravity="center"
-                        android:text="@string/landing_send_btn"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.002"
-                        android:background="@color/grey" >
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/verify_code_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="0.499"
-                        android:background="@drawable/textview_button_bg"
-                        android:gravity="center"
-                        android:text="@string/landing_verify_btn"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Card 2 -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/card"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/landing_help_heading"
-                    android:textColor="@color/ICSBlue"
-                    android:textIsSelectable="false"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ICSBlue" >
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="@string/landing_help"
+                    android:layout_weight="0.499"
+                    android:background="@drawable/textview_button_bg"
+                    android:gravity="center"
+                    android:text="@string/landing_verify_btn"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
