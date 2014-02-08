@@ -2,6 +2,7 @@ package in.co.praveenkumar.iitblit;
 
 import android.app.Activity;
 import android.os.Bundle;
+import in.co.praveenkumar.litiitb.R;
 
 public class MenuClickHandler extends Activity {
 	private final int ABOUT = 1;

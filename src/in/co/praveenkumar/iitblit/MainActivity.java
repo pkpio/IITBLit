@@ -1,6 +1,7 @@
 package in.co.praveenkumar.iitblit;
 
 import in.co.praveenkumar.iitblit.networking.SendCode;
+import in.co.praveenkumar.litiitb.R;
 
 import java.io.File;
 
@@ -124,9 +125,10 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			String ldapId = ldapView.getText().toString();
 			String codeGvn = codeView.getText().toString();
-			if (ldapId.contentEquals(GUEST))
+			if (ldapId.contentEquals(GUEST)) {
+				db.setLDAP(GUEST);
 				openActivity(ACTIVITY_QUIZ);
-			else if (!ldapId.contentEquals("")) {
+			} else if (!ldapId.contentEquals("")) {
 				// Set ldapId from field to global ldap variable
 				ldap = ldapId;
 				String actualCode = appSharedPrefs.getString(ldapId, "");

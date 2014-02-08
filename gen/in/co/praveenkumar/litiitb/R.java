@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package in.co.praveenkumar.iitblit;
+package in.co.praveenkumar.litiitb;
 
 public final class R {
     public static final class attr {

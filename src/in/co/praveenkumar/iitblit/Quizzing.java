@@ -5,15 +5,20 @@ import in.co.praveenkumar.iitblit.networking.ScoresDownloader;
 import in.co.praveenkumar.iitblit.networking.SumbitAnswers;
 import in.co.praveenkumar.iitblit.tools.JsonDecoder;
 import in.co.praveenkumar.iitblit.tools.StringList;
+import in.co.praveenkumar.litiitb.R;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,6 +53,7 @@ public class Quizzing extends FragmentActivity {
 	public final static String COLOR_YELLOW = "#55FFF200";
 	public final static String COLOR_BLUE = "#43b1d6";
 	private static Button submitBtn;
+	private static Context context;
 
 	// For answer color evaluation on submit
 	private static Boolean[][] response = new Boolean[4][4];
@@ -75,6 +81,7 @@ public class Quizzing extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quiz_main);
+		context = this;
 
 		// For answers temporary storage
 		db = new Database(getApplicationContext());
@@ -338,13 +345,12 @@ public class Quizzing extends FragmentActivity {
 		public static void questionsUIUpdate() {
 			for (int catNum = 0; catNum < 4; catNum++) {
 				for (int quesNum = 0; quesNum < 4; quesNum++) {
-					File imgFile = new File(
+					final File imgFile = new File(
 							Environment.getExternalStorageDirectory(),
 							"/IITBLit/" + "Cat" + catNum + "Ques" + quesNum
 									+ ".jpg");
 					if (imgFile.exists() && sectionRootView[catNum] != null) {
-						Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
-								.getAbsolutePath());
+						Bitmap myBitmap = decodeImage(imgFile);
 						Log.d(DEBUG_TAG, "Updating UI for Cat : " + catNum
 								+ " Ques : " + quesNum);
 						switch (quesNum) {
@@ -352,21 +358,45 @@ public class Quizzing extends FragmentActivity {
 							ImageView ques1View = (ImageView) sectionRootView[catNum]
 									.findViewById(R.id.q1ImgView);
 							ques1View.setImageBitmap(myBitmap);
+							ques1View.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									openImage(imgFile);
+								}
+							});
 							break;
 						case 1:
 							ImageView ques2View = (ImageView) sectionRootView[catNum]
 									.findViewById(R.id.q2ImgView);
 							ques2View.setImageBitmap(myBitmap);
+							ques2View.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									openImage(imgFile);
+								}
+							});
 							break;
 						case 2:
 							ImageView ques3View = (ImageView) sectionRootView[catNum]
 									.findViewById(R.id.q3ImgView);
 							ques3View.setImageBitmap(myBitmap);
+							ques3View.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									openImage(imgFile);
+								}
+							});
 							break;
 						case 3:
 							ImageView ques4View = (ImageView) sectionRootView[catNum]
 									.findViewById(R.id.q4ImgView);
 							ques4View.setImageBitmap(myBitmap);
+							ques4View.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									openImage(imgFile);
+								}
+							});
 							break;
 
 						}
@@ -753,5 +783,39 @@ public class Quizzing extends FragmentActivity {
 			}
 		}
 	}// End of function
+
+	// decodes image and scales it to reduce memory consumption
+	private static Bitmap decodeImage(File f) {
+		try {
+			// Decode image size
+			BitmapFactory.Options o = new BitmapFactory.Options();
+			o.inJustDecodeBounds = true;
+			BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+
+			// The new size we want to scale to
+			final int REQUIRED_SIZE = 70;
+
+			// Find the correct scale value. It should be the power of 2.
+			int scale = 1;
+			while (o.outWidth / scale / 2 >= REQUIRED_SIZE
+					&& o.outHeight / scale / 2 >= REQUIRED_SIZE)
+				scale *= 2;
+
+			// Decode with inSampleSize
+			BitmapFactory.Options o2 = new BitmapFactory.Options();
+			o2.inSampleSize = scale;
+			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+		} catch (FileNotFoundException e) {
+		}
+		return null;
+	}
+
+	private static void openImage(File f) {
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setDataAndType(Uri.parse("file://" + f.getAbsolutePath()),
+				"image/*");
+		context.startActivity(intent);
+	}
 
 }
