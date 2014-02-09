@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class Database {
-	private static final String APP_SHARED_PREFS = "iitblit_preferences";
+	private static final String DATABASE_VERSION = "1";
+	private static final String APP_SHARED_PREFS = "iitblit_preferences"
+			+ "_version_" + DATABASE_VERSION;
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
 
@@ -32,6 +34,15 @@ public class Database {
 
 	public void setLDAP(String ldap) {
 		prefsEditor.putString("ldap", ldap);
+		prefsEditor.commit();
+	}
+
+	public Boolean isTutored() {
+		return appSharedPrefs.getBoolean("isTutored", false);
+	}
+
+	public void setTutored() {
+		prefsEditor.putBoolean("isTutored", true);
 		prefsEditor.commit();
 	}
 }

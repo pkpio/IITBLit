@@ -32,7 +32,7 @@
     <string name="landing_ldap_hint">LDAP id</string>
     <string name="landing_verify_code_hint">Verification code</string>
     <string name="landing_help_heading">Help</string>
-    <string name="landing_help">Access is granted using your IIT Bombay LDAP id\n\nYou may however use as guest with ldap: guest\n\nGuest user answers will not be considered for highscores.</string>
+    <string name="landing_help">Access is granted using your IIT Bombay LDAP id\n\nYou may however use as guest with ldap: guest\n\nAll Guest users will be considered under one name for highscores.</string>
     <string name="landing_send_btn">Send code</string>
     <string name="landing_verify_btn">Verify me !</string>
 
@@ -66,5 +66,27 @@
     <!-- Menu -->
     <string name="menu_about">About</string>
     <string name="menu_help">Help</string>
+    <string name="menu_tutorial">Tutorial</string>
+
+    <!-- Tutorial -->
+    <string name="tut_access_heading">Access to app</string>
+    <string name="tut_access_content">To use this application you need an IIT Bombay LDAP id\n\n
+        We also have a guest access for those interested. Enter \'guest\' for LDAP to gain guest access.</string>
+    <string name="tut_ldap_verify_heading">LDAP verification</string>
+    <string name="tut_ldap_verify_content">To verify your ldap we will be sending an email to your ldap
+        id with a random code.\n\n
+        To pass verification enter your LDAP id and hit \'send code\'\n\n
+        Check your email for verification. Enter it in the app and hit \'verify me\'</string>
+    <string name="tut_app_usage_heading">Using app</string>
+    <string name="tut_app_usage_content">There are 4 sections.
+        \n\nEach section has a maximum of 4 questions.
+        \n\nSwipe horrizontal to browse through sections
+        \n\nEnter your answers in the space provided and hit submit to verify.</string>
+    <string name="tut_refer_tut_heading">Referring back</string>
+    <string name="tut_refer_tut_content">You can refer this tutorial anytime in future 
+        from the options menu.
+        \n\nIf you have any further queries or concerns, write to the author
+        \n\niitblit@praveenkumar.co.in</string>
+    <string name="tut_btn_default">Gotcha!</string>
 
 </resources>

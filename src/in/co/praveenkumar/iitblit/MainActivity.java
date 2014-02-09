@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 	private final int ACTIVITY_QUIZ = 0;
 	private final int ACTIVITY_ABOUT = 1;
 	private final int ACTIVITY_HELP = 2;
+	private final int ACTIVITY_TUTORIAL = 3;
 	private final String GUEST = "guest";
 	public String ldap = "";
 	private Database db;
@@ -75,6 +76,12 @@ public class MainActivity extends Activity {
 			}
 		}
 
+		// If the user hasn't gone through the tutorial already take him there
+		if (!db.isTutored()) {
+			db.setTutored();
+			openActivity(ACTIVITY_TUTORIAL);
+		}
+
 	}
 
 	@Override
@@ -92,6 +99,9 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.menu_help:
 			openActivity(ACTIVITY_HELP);
+			break;
+		case R.id.menu_tutorial:
+			openActivity(ACTIVITY_TUTORIAL);
 			break;
 		}
 		return true;
@@ -168,6 +178,10 @@ public class MainActivity extends Activity {
 			Intent l = new Intent(this, MenuClickHandler.class);
 			l.putExtra("menu_item", ACTIVITY_HELP);
 			startActivityForResult(l, 11);
+			break;
+		case ACTIVITY_TUTORIAL:
+			Intent m = new Intent(this, Tutorial.class);
+			startActivityForResult(m, 11);
 			break;
 		default:
 			break;

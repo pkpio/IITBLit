@@ -48,8 +48,9 @@ public final class R {
         public static final int ans4=0x7f09001f;
         public static final int image=0x7f090000;
         public static final int ldap_id=0x7f090005;
-        public static final int menu_about=0x7f090020;
-        public static final int menu_help=0x7f090021;
+        public static final int menu_about=0x7f090025;
+        public static final int menu_help=0x7f090026;
+        public static final int menu_tutorial=0x7f090027;
         public static final int pager=0x7f09000c;
         public static final int pager_title_strip=0x7f09000d;
         public static final int progressBar1=0x7f09000b;
@@ -73,6 +74,11 @@ public final class R {
         public static final int scoresHeading=0x7f090002;
         public static final int send_code_btn=0x7f090007;
         public static final int submit_button=0x7f09000f;
+        public static final int tut_access_info=0x7f090020;
+        public static final int tut_app_usage_info=0x7f090022;
+        public static final int tut_btn=0x7f090024;
+        public static final int tut_ldap_verify_info=0x7f090021;
+        public static final int tut_refer_tut_info=0x7f090023;
         public static final int verification_code=0x7f090006;
         public static final int verify_code_btn=0x7f090008;
     }
@@ -83,6 +89,7 @@ public final class R {
         public static final int landing_page=0x7f030003;
         public static final int quiz_main=0x7f030004;
         public static final int quiz_section=0x7f030005;
+        public static final int tutorial=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -138,6 +145,7 @@ public final class R {
          */
         public static final int menu_about=0x7f06002a;
         public static final int menu_help=0x7f06002b;
+        public static final int menu_tutorial=0x7f06002c;
         public static final int ques_img_descr=0x7f06000e;
         /**  Strings 
          */
@@ -154,6 +162,17 @@ public final class R {
         public static final int title_section3=0x7f060004;
         public static final int title_section4=0x7f060005;
         public static final int title_section5=0x7f060006;
+        public static final int tut_access_content=0x7f06002e;
+        /**  Tutorial 
+         */
+        public static final int tut_access_heading=0x7f06002d;
+        public static final int tut_app_usage_content=0x7f060032;
+        public static final int tut_app_usage_heading=0x7f060031;
+        public static final int tut_btn_default=0x7f060035;
+        public static final int tut_ldap_verify_content=0x7f060030;
+        public static final int tut_ldap_verify_heading=0x7f06002f;
+        public static final int tut_refer_tut_content=0x7f060034;
+        public static final int tut_refer_tut_heading=0x7f060033;
     }
     public static final class style {
         /** 

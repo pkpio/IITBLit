@@ -97,6 +97,9 @@ public class Quizzing extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
+		// For caching more than just 2 pages
+		mViewPager.setOffscreenPageLimit(5);
 
 		// Set progress message views
 		progMsgLL = (LinearLayout) findViewById(R.id.progress_msg_layout);
@@ -150,6 +153,10 @@ public class Quizzing extends FragmentActivity {
 			Intent k = new Intent(this, MenuClickHandler.class);
 			k.putExtra("menu_item", 2);
 			startActivityForResult(k, 11);
+			break;
+		case R.id.menu_tutorial:
+			Intent l = new Intent(this, Tutorial.class);
+			startActivityForResult(l, 11);
 			break;
 		}
 		return true;
@@ -340,6 +347,7 @@ public class Quizzing extends FragmentActivity {
 
 		public UIupdater() {
 			// Constructor does nothing
+			Log.d(DEBUG_TAG, "UIupdater initiated!");
 		}
 
 		public static void questionsUIUpdate() {
@@ -351,8 +359,8 @@ public class Quizzing extends FragmentActivity {
 									+ ".jpg");
 					if (imgFile.exists() && sectionRootView[catNum] != null) {
 						Bitmap myBitmap = decodeImage(imgFile);
-						Log.d(DEBUG_TAG, "Updating UI for Cat : " + catNum
-								+ " Ques : " + quesNum);
+						// Log.d(DEBUG_TAG, "Updating UI for Cat : " + catNum
+						// + " Ques : " + quesNum);
 						switch (quesNum) {
 						case 0:
 							ImageView ques1View = (ImageView) sectionRootView[catNum]

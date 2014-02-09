@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar.litiitb"
-    android:versionCode="5"
-    android:versionName="1.4 Alpha" >
+    android:versionCode="6"
+    android:versionName="1.5 release-preview" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -33,6 +33,11 @@
         </activity>
         <activity
             android:name="in.co.praveenkumar.iitblit.MenuClickHandler"
+            android:configChanges="orientation"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.iitblit.Tutorial"
             android:configChanges="orientation"
             android:windowSoftInputMode="stateHidden" >
         </activity>
