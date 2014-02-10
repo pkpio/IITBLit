@@ -5,6 +5,7 @@ import in.co.praveenkumar.iitblit.networking.ScoresDownloader;
 import in.co.praveenkumar.iitblit.networking.SumbitAnswers;
 import in.co.praveenkumar.iitblit.tools.JsonDecoder;
 import in.co.praveenkumar.iitblit.tools.StringList;
+import in.co.praveenkumar.iitblit.tools.scoreSorter;
 import in.co.praveenkumar.litiitb.R;
 
 import java.io.File;
@@ -97,7 +98,7 @@ public class Quizzing extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		
+
 		// For caching more than just 2 pages
 		mViewPager.setOffscreenPageLimit(5);
 
@@ -447,6 +448,15 @@ public class Quizzing extends FragmentActivity {
 			// separated strings.
 			String[] uNamesStrng = new String[5];
 			String[] sScoresStrng = new String[5];
+
+			// Sorting scores
+			for (int catNum = 0; catNum < 5; catNum++) {
+				scoreSorter ss = new scoreSorter(uNames.get(catNum),
+						sScores.get(catNum));
+				ss.sort();
+				uNames.set(catNum, (StringList) ss.getSorteduNames());
+				sScores.set(catNum, (StringList) ss.getSortedScores());
+			}
 
 			// Building scores and names string per section
 			for (int catNum = 0; catNum < 5; catNum++) {
