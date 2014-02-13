@@ -18,9 +18,9 @@ public class scoreSorter {
 		// Best case: O(N)
 		for (int i = 0; i < scores.size(); i++) {
 
-			int curMinIndex = i;
-			int curMinVal = Integer.parseInt(scores.get(i));
-			String curMinValUser = uNames.get(i);
+			int curMaxIndex = i;
+			int curMaxVal = Integer.parseInt(scores.get(i));
+			String curMaxValUser = uNames.get(i);
 
 			for (int j = i; j < scores.size(); j++) {
 
@@ -28,13 +28,14 @@ public class scoreSorter {
 				String curValUser = uNames.get(j);
 
 				// Find a new minimum ?
-				if (curVal > curMinVal) {
+				if (curVal > curMaxVal) {
 					// Exchange positions with current minimum
-					scores.set(curMinIndex, curVal + "");
-					uNames.set(curMinIndex, curValUser);
-					scores.set(j, curMinVal + "");
-					uNames.set(j, curMinValUser);
-					curMinVal = curVal;
+					scores.set(curMaxIndex, curVal + "");
+					uNames.set(curMaxIndex, curValUser);
+					scores.set(j, curMaxVal + "");
+					uNames.set(j, curMaxValUser);
+					curMaxVal = curVal;
+					curMaxValUser = curValUser;
 				}
 
 			}

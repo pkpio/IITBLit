@@ -82,8 +82,8 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:gravity="center_horizontal"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:linksClickable="true"
                     android:padding="5dp"
                     android:text="@string/about_issues"
@@ -113,8 +113,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/ICSBlue"
-                    android:layout_marginBottom="20dp" >
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/ICSBlue" >
                 </LinearLayout>
 
                 <!-- Praveen -->
@@ -129,11 +129,11 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:text="@string/about_praveen"
                     android:textColor="@color/ICSBlue"
-                    android:textIsSelectable="true"
-                    android:layout_marginTop="10dp" />
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -210,7 +210,6 @@
                     android:padding="5dp"
                     android:text="@string/about_rushabh_desc"
                     android:textColor="@color/black" />
-                
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -245,7 +244,6 @@
                     android:padding="5dp"
                     android:text="@string/about_sabat_desc"
                     android:textColor="@color/black" />
-                
 
                 <LinearLayout
                     android:layout_width="match_parent"

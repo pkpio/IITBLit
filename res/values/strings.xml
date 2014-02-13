@@ -37,7 +37,7 @@
     <string name="landing_verify_btn">Verify me !</string>
 
     <!-- About strings -->
-    <string name="about_version">Version : </string>
+    <string name="about_version">Version : v1.8 public-release</string>
     <string name="about_IITBLit">An Android app to promote Lit at IITB</string>
     <string name="about_issues_heading">No known issues</string>
     <string name="about_issues">If found report to iitblit@praveenkumar.co.in</string>
@@ -45,7 +45,7 @@
 
     <!-- About Praveen -->
     <string name="about_praveen">Praveen Kumar Pendyala</string>
-    <string name="about_praveen_desc">Android and Web developer, .\nSenior undergraduate, Dept. of Electrical Engineering.</string>
+    <string name="about_praveen_desc">Android and Web developer,\nSenior undergraduate, Dept. of Electrical Engineering.</string>
 
     <!-- About Audi -->
     <string name="about_audi">Alekhya Audi</string>

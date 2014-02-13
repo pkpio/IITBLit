@@ -57,7 +57,6 @@ public class Tutorial extends Activity {
 				pos = 3;
 				break;
 			case 3:
-				ReferTut.setVisibility(LinearLayout.GONE);
 				Intent l = new Intent(getApplicationContext(),
 						MainActivity.class);
 				startActivityForResult(l, 11);

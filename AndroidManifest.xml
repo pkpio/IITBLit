@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar.litiitb"
-    android:versionCode="8"
-    android:versionName="1.7 release-preview" >
+    android:versionCode="9"
+    android:versionName="1.8 public-release" >
 
     <uses-sdk
         android:minSdkVersion="9"
