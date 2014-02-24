@@ -43,7 +43,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class Quizzing extends FragmentActivity {
+public class QuizzingActivity extends FragmentActivity {
 	public static View[] sectionRootView = new View[5];
 	public static LinearLayout progMsgLL;
 	public static TextView progMsgTV;
@@ -128,10 +128,11 @@ public class Quizzing extends FragmentActivity {
 	// To avoid going back to landing page. Open Launcher. App in bg.
 	@Override
 	public void onBackPressed() {
-		Intent intent = new Intent(Intent.ACTION_MAIN);
-		intent.addCategory(Intent.CATEGORY_HOME);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
+		Intent l = new Intent(this, MainActivity.class);
+		// To close app when finish() is called in the main activity
+		l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		l.putExtra("EXIT", true);
+		startActivityForResult(l, 11);
 		return;
 	}
 

@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.co.praveenkumar.iitblit.Quizzing"
+            android:name="in.co.praveenkumar.iitblit.QuizzingActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden" >
         </activity>

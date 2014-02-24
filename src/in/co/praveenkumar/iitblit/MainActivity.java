@@ -44,6 +44,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.landing_page);
 
+		// Close if needed.
+		if (getIntent().getBooleanExtra("EXIT", false))
+			finish();
+
 		// Android in-built preferences for landing page only.
 		appSharedPrefs = this.getSharedPreferences("IITBLit_landing_page",
 				Activity.MODE_PRIVATE);
@@ -166,7 +170,8 @@ public class MainActivity extends Activity {
 	private void openActivity(int item) {
 		switch (item) {
 		case ACTIVITY_QUIZ:
-			Intent j = new Intent(this, Quizzing.class);
+			Intent j = new Intent(this, QuizzingActivity.class);
+			j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivityForResult(j, 11);
 			break;
 		case ACTIVITY_ABOUT:

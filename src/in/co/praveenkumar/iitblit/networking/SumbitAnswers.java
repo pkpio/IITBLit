@@ -1,7 +1,7 @@
 package in.co.praveenkumar.iitblit.networking;
 
 import in.co.praveenkumar.iitblit.MainActivity;
-import in.co.praveenkumar.iitblit.Quizzing.UIupdater;
+import in.co.praveenkumar.iitblit.QuizzingActivity.UIupdater;
 
 import java.io.BufferedReader;
 import java.io.IOException;
