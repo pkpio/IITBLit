@@ -47,43 +47,46 @@ public class MainActivity extends Activity {
 		// Close if needed.
 		if (getIntent().getBooleanExtra("EXIT", false))
 			finish();
+		else {
 
-		// Android in-built preferences for landing page only.
-		appSharedPrefs = this.getSharedPreferences("IITBLit_landing_page",
-				Activity.MODE_PRIVATE);
+			// Android in-built preferences for landing page only.
+			appSharedPrefs = this.getSharedPreferences("IITBLit_landing_page",
+					Activity.MODE_PRIVATE);
 
-		// Check if user is already verified. If so, open quiz page
-		if (appSharedPrefs.getBoolean(VERIFIED, false))
-			openActivity(ACTIVITY_QUIZ);
+			// Check if user is already verified. If so, open quiz page
+			if (appSharedPrefs.getBoolean(VERIFIED, false))
+				openActivity(ACTIVITY_QUIZ);
 
-		// Set views
-		ldapView = (EditText) findViewById(R.id.ldap_id);
-		codeView = (EditText) findViewById(R.id.verification_code);
-		sendBtn = (Button) findViewById(R.id.send_code_btn);
-		verifyBtn = (Button) findViewById(R.id.verify_code_btn);
+			// Set views
+			ldapView = (EditText) findViewById(R.id.ldap_id);
+			codeView = (EditText) findViewById(R.id.verification_code);
+			sendBtn = (Button) findViewById(R.id.send_code_btn);
+			verifyBtn = (Button) findViewById(R.id.verify_code_btn);
 
-		// For LDAP saving.
-		db = new Database(getApplicationContext());
+			// For LDAP saving.
+			db = new Database(getApplicationContext());
 
-		sendBtn.setOnClickListener(sendCodeBtnListener);
-		verifyBtn.setOnClickListener(verifyCodeBtnListener);
+			sendBtn.setOnClickListener(sendCodeBtnListener);
+			verifyBtn.setOnClickListener(verifyCodeBtnListener);
 
-		// Create a directory for the app content
-		File file = new File(Environment.getExternalStorageDirectory(),
-				"/IITBLit/");
-		if (!file.exists()) {
-			if (!file.mkdirs()) {
-				Log.d(DEBUG_TAG, "Problem creating course folder");
-				Toast.makeText(getBaseContext(),
-						"failed to create folder " + file, Toast.LENGTH_SHORT)
-						.show();
+			// Create a directory for the app content
+			File file = new File(Environment.getExternalStorageDirectory(),
+					"/IITBLit/");
+			if (!file.exists()) {
+				if (!file.mkdirs()) {
+					Log.d(DEBUG_TAG, "Problem creating course folder");
+					Toast.makeText(getBaseContext(),
+							"failed to create folder " + file,
+							Toast.LENGTH_SHORT).show();
+				}
 			}
-		}
 
-		// If the user hasn't gone through the tutorial already take him there
-		if (!db.isTutored()) {
-			db.setTutored();
-			openActivity(ACTIVITY_TUTORIAL);
+			// If the user hasn't gone through the tutorial already take him
+			// there
+			if (!db.isTutored()) {
+				db.setTutored();
+				openActivity(ACTIVITY_TUTORIAL);
+			}
 		}
 
 	}

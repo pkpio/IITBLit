@@ -17,7 +17,7 @@ public class Tutorial extends Activity {
 	private LinearLayout AccessToApp;
 	private LinearLayout LDAPVerify;
 	private LinearLayout AppUsage;
-	private LinearLayout ReferTut;
+	// private LinearLayout ReferTut;
 
 	private Button NextBtn;
 
@@ -32,7 +32,7 @@ public class Tutorial extends Activity {
 		AccessToApp = (LinearLayout) findViewById(R.id.tut_access_info);
 		LDAPVerify = (LinearLayout) findViewById(R.id.tut_ldap_verify_info);
 		AppUsage = (LinearLayout) findViewById(R.id.tut_app_usage_info);
-		ReferTut = (LinearLayout) findViewById(R.id.tut_refer_tut_info);
+		// ReferTut = (LinearLayout) findViewById(R.id.tut_refer_tut_info);
 
 		NextBtn = (Button) findViewById(R.id.tut_btn);
 		NextBtn.setOnClickListener(nextListener);
