@@ -1,5 +1,7 @@
 package in.co.praveenkumar.iitblit.networking;
 
+import in.co.praveenkumar.iitblit.MainActivity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,8 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 public class SendCode {
-	//private final String codeURL = MainActivity.baseURL + "/email/";
-	private final String codeURL = "http://home.iitb.ac.in/~praveendath92/IITBLit/email/";
+	private final String codeURL = MainActivity.baseURL + "/email/";
 	private final String SUCCESS_CONTENT = "success";
 
 	public Boolean sendCodeToServer(String ldap, String code) {

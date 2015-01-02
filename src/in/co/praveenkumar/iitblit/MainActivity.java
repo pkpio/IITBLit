@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private final String DEBUG_TAG = "Main Activity";
-	public static final String baseURL = "http://iitblit.praveenkumar.co.in";
+	public static final String baseURL = "http://praveenkumar.co.in/iitblit";
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
 	private final String VERIFIED = "isVerified";
